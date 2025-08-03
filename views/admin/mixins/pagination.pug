@@ -1,0 +1,20 @@
+mixin pagination(pagination)
+    nav
+        ul(style="list-style-type: none; padding: 0;")
+            .row(style="justify-content: center;")
+                li(class="page-item")
+                    button(
+                        class="page-link",
+                        data-page=`${pagination.currentPage == 1 ? 1 : pagination.currentPage - 1}`
+                    ) Trang trước
+                - for (let i = pagination.previousPage; i <= pagination.totalPage && i <= pagination.previousPage + 2; i++) 
+                    li(class=`page-item ${pagination.currentPage == i ? 'active' : ''}`)
+                        button(
+                            class=`page-link`,
+                            data-page=`${i}`
+                        ) #{i}
+                li(class="page-item")
+                    button(
+                        class="page-link",
+                        data-page=`${pagination.currentPage == pagination.totalPage ? pagination.totalPage : pagination.currentPage + 1}`
+                    ) Trang sau

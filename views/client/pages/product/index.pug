@@ -1,0 +1,28 @@
+extends ../../layout/default.pug
+block main
+    h1 Trang danh sách sản phẩm 
+    .card.mb-3 
+        .card-header 
+        .row
+            each item, index in products
+                .col-4.mb-3 
+                    .product-item 
+                        .inner-image 
+                            img(src=item.thumbnail, alt=item.title width=100 height=auto)
+                        .inner-content 
+                            h3.inner-title #{item.title}
+                            .inner-price-old #{item.price}$
+                            .inner-discount -#{item.discountPercentage}%
+                            .inner-price-new #{item.priceNew}$                 
+
+    nav(aria-label="Page navigation example")
+        ul(class="pagination")
+            li(class="page-item")
+                a(class="page-link" href=`/products?page=${pagination.previousPage}` aria-label="Previous")
+                    span(aria-hidden="true") &laquo;
+            -  for (let i = pagination.previousPage; i <= pagination.totalPage && i <= pagination.previousPage + 2; i++)    
+                li(class="page-item")
+                    a(class="page-link" href=`/products?page=${i}`) #{i}
+            li(class="page-item")
+                a(class="page-link" href=`/products?page=${pagination.nextPage}` aria-label="Next")
+                    span(aria-hidden="true") &raquo;
