@@ -13,11 +13,11 @@ app.use(session({secret: 'secretKey', cookie: { maxAge: 3000 }}));
 app.use(flash());
 
 // Using pug
-app.set("views", "views");
+app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 
 // Declare public directory
-app.use(express.static("public"));
+app.use(express.static(`${__dirname}/public`));
 
 // Declare .env
 require('dotenv').config();
